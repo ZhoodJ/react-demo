@@ -25,9 +25,9 @@ npm install react react-dom --save
 npm install babel-core babel-loader babel-preset-env babel-preset-react --save
 ```
 
-#### 六、安装css、less相关loader
+#### 六、安装css、less、url相关loader
 ```
-npm install css-loader style-loader less-loader less --save
+npm install css-loader style-loader less-loader less url-loader --save
 ```
 
 #### 七、项目结构
@@ -101,12 +101,21 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                loader: 'babel-loader',
+                use: 'babel-loader',
                 exclude: /node_modules/
             },
             {
                 test: /\.(le|c)ss$/,
-                use:['style-loader','css-loader','less-loader']
+                use: ['style-loader', 'css-loader', 'less-loader']
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10000
+                    }
+                }]
             }
         ]
     },
@@ -132,7 +141,7 @@ module.exports = {
 ```
 "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode development"
+    "build": "webpack --mode production"
 }
 ```
 
