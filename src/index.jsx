@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Home from "./component/Home.jsx";
 import About from "./component/About.jsx";
-import {BrowserRouter, Route, Switch, Link} from "react-router-dom";
+import {BrowserRouter, Route, Link} from "react-router-dom";
 
 ReactDOM.render((
     <BrowserRouter>
@@ -12,8 +12,8 @@ ReactDOM.render((
                 <li><Link to="/about">About</Link></li>
             </ul>
             <hr/>
-            <Route exact path="/" component={Home}></Route>
-            <Route path="/about" component={About}></Route>
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
         </div>
     </BrowserRouter>
 ), document.getElementById("root"));
