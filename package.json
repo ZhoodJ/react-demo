@@ -6,7 +6,6 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "electron": "electron ./src/main.js"
   },
   "author": "",
   "license": "ISC",
