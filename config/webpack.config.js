@@ -1,9 +1,10 @@
 const path = require('path');
+const HTMLPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: path.join(__dirname, './src/index.jsx'),
+    entry: path.join(__dirname, '../src/index.jsx'),
     output: {
-        path: path.join(__dirname, './dist'),
+        path: path.join(__dirname, '../dist'),
         filename: 'bundle.js'
     },
     module: {
@@ -27,10 +28,17 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, "./dist/"),
+        contentBase: path.join(__dirname, "../dist/"),
         host: 'localhost',
         port: '3000',
         inline: true,
         open: true,
+        compress: true
     },
+
+    plugins: [
+        new HTMLPlugin({
+            template: path.join(__dirname, '../index.html')
+        })
+    ]
 }
