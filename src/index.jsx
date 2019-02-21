@@ -5,20 +5,7 @@ import Page from "./component/Page.jsx";
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-
-const themeReducer = (state, action) => {
-    if (!state) {
-        return {
-            themeColor: 'red'
-        }
-    }
-    switch (action.type) {
-        case 'CHANGE_COLOR':
-            return {...state, themeColor: action.themeColor}
-        default:
-            return state
-    }
-}
+import {themeReducer} from "./reducer/ThemeReducer.jsx";
 
 const store = createStore(themeReducer);
 

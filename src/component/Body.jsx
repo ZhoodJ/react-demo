@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {changeColorAction} from "../action/ChangeColorAction.jsx";
 
 class Body extends Component {
 
@@ -28,7 +29,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSwitchColor: (color) => {
-            dispatch({type: 'CHANGE_COLOR', themeColor: color})
+            dispatch(changeColorAction(color))
         }
     }
 }
