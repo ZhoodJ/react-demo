@@ -12,17 +12,12 @@ class HomePage extends Component {
         super();
         this.state = {
             collapsed: false,
-            style: {
-                overflow: 'auto', height: '100%', width: '100%', position: 'fixed', left: '200px',
-            }
         };
     }
 
     toggle() {
-        let left = this.state.style.left === '200px' ? 0 : '200px';
         this.setState({
-            collapsed: !this.state.collapsed,
-            style: {...this.state.style, left: left}
+            collapsed: !this.state.collapsed
         });
     }
 
@@ -34,7 +29,7 @@ class HomePage extends Component {
                     collapsible
                     collapsed={this.state.collapsed}
                     style={{
-                        overflow: 'auto', height: '100%', position: 'fixed', left: 0,
+                        height: "100vh"
                     }}
                 >
                     <div className="logo"/>
@@ -77,7 +72,7 @@ class HomePage extends Component {
                         </Menu.Item>
                     </Menu>
                 </Sider>
-                <Layout style={this.state.style}>
+                <Layout>
                     <Header style={{background: '#fff', padding: 0}}>
                         <Icon
                             className="trigger"
