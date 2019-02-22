@@ -12,12 +12,11 @@ class ReduxPage extends Component {
     render() {
         return (
             <div>
-                <h3 style={{color: this.props.themeColor}}>Header</h3>
+                <h3 style={{color: this.props.themeColor}}>这是一段文字</h3>
                 <div>
-                    <Button onClick={this.handleSwitchColor.bind(this, "red")}>Red</Button>
-                    <Button onClick={this.handleSwitchColor.bind(this, "blue")}>Blue</Button>
+                    <Button type="primary" onClick={this.handleSwitchColor.bind(this, "red")}>红色</Button>
+                    <Button type="primary" onClick={this.handleSwitchColor.bind(this, "blue")}>蓝色</Button>
                 </div>
-                <footer style={{color: this.props.themeColor}}>Footer</footer>
             </div>
         )
     }
