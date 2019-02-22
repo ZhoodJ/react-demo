@@ -8,17 +8,10 @@ const {SubMenu} = Menu;
 
 class Home extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            collapsed: false,
-        };
-    }
-
-    toggle() {
-        this.setState({
-            collapsed: !this.state.collapsed
-        });
+    toggle(flag) {
+        if (this.props.onChangeCollapsed) {
+            this.props.onChangeCollapsed(flag);
+        }
     }
 
     render() {
@@ -27,7 +20,7 @@ class Home extends Component {
                 <Sider
                     trigger={null}
                     collapsible
-                    collapsed={this.state.collapsed}
+                    collapsed={this.props.collapsed}
                     style={{
                         height: "100vh"
                     }}
@@ -38,7 +31,7 @@ class Home extends Component {
                             key="1"
                             title={<span><Icon type="user"/><span>菜单一</span></span>}
                         >
-                            <Menu.Item key="1-1"><Link to="/test">测试redux</Link></Menu.Item>
+                            <Menu.Item key="1-1"><Link to="/menu/test">测试redux</Link></Menu.Item>
                             <Menu.Item key="1-2">子菜单二</Menu.Item>
                             <Menu.Item key="1-3">子菜单三</Menu.Item>
                         </SubMenu>
@@ -76,8 +69,8 @@ class Home extends Component {
                     <Header style={{background: '#fff', padding: 0}}>
                         <Icon
                             className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.toggle.bind(this)}
+                            type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.toggle.bind(this, this.props.collapsed ? false : true)}
                         />
                     </Header>
                     <Breadcrumb style={{margin: '16px 16px 0 16px'}}>
@@ -91,7 +84,7 @@ class Home extends Component {
                         Content
                     </Content>
                     <Footer style={{textAlign: 'center'}}>
-                        Ant Design ©2018 Created by Ant UED
+                        copyright ©2018 by 凉衫薄
                     </Footer>
                 </Layout>
             </Layout>

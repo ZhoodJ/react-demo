@@ -5,7 +5,7 @@ import {TestContainer} from "../../container/test/TestContainer.jsx";
 export const TestRouter = () => {
     return (
         <div>
-            <Route path="/test" component={TestContainer}/>
+            <Route path="/menu/test" component={TestContainer}/>
         </div>
     )
 }
