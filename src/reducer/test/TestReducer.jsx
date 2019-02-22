@@ -1,4 +1,4 @@
-export const reduxPageReducer = (state, action) => {
+export const testReducer = (state, action) => {
     if (!state) {
         return {
             themeColor: 'red'

@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import ReduxPage from "../component/ReduxPage.jsx";
-import {changeColorAction} from "../action/ChangeColorAction.jsx";
+import Test from "../../component/test/Test.jsx";
+import {changeColorAction} from "../../action/test/ChangeColorAction.jsx";
 
 const mapStateToProps = (state) => {
     return {
@@ -16,4 +16,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export const ReduxPageContainer = connect(mapStateToProps, mapDispatchToProps)(ReduxPage);
+export const TestContainer = connect(mapStateToProps, mapDispatchToProps)(Test);

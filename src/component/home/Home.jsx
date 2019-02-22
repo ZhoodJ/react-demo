@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import {Breadcrumb, Icon, Layout, Menu} from 'antd';
 import {Link} from "react-router-dom";
-import "./HomePage.less";
+import "./Home.less";
 
 const {Header, Footer, Sider, Content} = Layout;
 const {SubMenu} = Menu;
 
-class HomePage extends Component {
+class Home extends Component {
 
     constructor() {
         super();
@@ -38,7 +38,7 @@ class HomePage extends Component {
                             key="1"
                             title={<span><Icon type="user"/><span>菜单一</span></span>}
                         >
-                            <Menu.Item key="1-1"><Link to="/redux">测试redux</Link></Menu.Item>
+                            <Menu.Item key="1-1"><Link to="/test">测试redux</Link></Menu.Item>
                             <Menu.Item key="1-2">子菜单二</Menu.Item>
                             <Menu.Item key="1-3">子菜单三</Menu.Item>
                         </SubMenu>
@@ -82,7 +82,7 @@ class HomePage extends Component {
                     </Header>
                     <Breadcrumb style={{margin: '16px 16px 0 16px'}}>
                         <Breadcrumb.Item>主页</Breadcrumb.Item>
-                        <Breadcrumb.Item>ReduxPage</Breadcrumb.Item>
+                        <Breadcrumb.Item>test</Breadcrumb.Item>
                     </Breadcrumb>
                     <Content style={{
                         margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,
@@ -99,4 +99,4 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+export default Home;

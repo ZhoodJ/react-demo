@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Button} from 'antd';
 
-class ReduxPage extends Component {
+class Test extends Component {
 
     handleSwitchColor(color) {
         if (this.props.onSwitchColor) {
@@ -22,4 +22,4 @@ class ReduxPage extends Component {
     }
 }
 
-export default ReduxPage;
+export default Test;
