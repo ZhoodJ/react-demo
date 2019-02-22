@@ -1,17 +1,23 @@
 import React, {Component} from "react";
-import {Breadcrumb, Icon, Layout, Menu} from 'antd';
-import {Link} from "react-router-dom";
-import "./Home.less";
+import {Icon, Layout, Menu} from 'antd';
+import {Link, Route, Switch} from "react-router-dom";
+import {TestContainer} from "./container/test/TestContainer.jsx";
+import "./Admin.less";
 
 const {Header, Footer, Sider, Content} = Layout;
 const {SubMenu} = Menu;
 
-class Home extends Component {
+class Admin extends Component {
 
-    toggle(flag) {
-        if (this.props.onChangeCollapsed) {
-            this.props.onChangeCollapsed(flag);
+    constructor() {
+        super();
+        this.state = {
+            collapsed: false
         }
+    }
+
+    toggle() {
+        this.setState({collapsed: this.state.collapsed ? false : true})
     }
 
     render() {
@@ -20,7 +26,7 @@ class Home extends Component {
                 <Sider
                     trigger={null}
                     collapsible
-                    collapsed={this.props.collapsed}
+                    collapsed={this.state.collapsed}
                     style={{
                         height: "100vh"
                     }}
@@ -31,7 +37,7 @@ class Home extends Component {
                             key="1"
                             title={<span><Icon type="user"/><span>菜单一</span></span>}
                         >
-                            <Menu.Item key="1-1"><Link to="/menu/test">测试redux</Link></Menu.Item>
+                            <Menu.Item key="1-1"><Link to="/admin/menu1/test">测试redux</Link></Menu.Item>
                             <Menu.Item key="1-2">子菜单二</Menu.Item>
                             <Menu.Item key="1-3">子菜单三</Menu.Item>
                         </SubMenu>
@@ -69,20 +75,13 @@ class Home extends Component {
                     <Header style={{background: '#fff', padding: 0}}>
                         <Icon
                             className="trigger"
-                            type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.toggle.bind(this, this.props.collapsed ? false : true)}
+                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.toggle.bind(this)}
                         />
                     </Header>
-                    <Breadcrumb style={{margin: '16px 16px 0 16px'}}>
-                        <Breadcrumb.Item>主页</Breadcrumb.Item>
-                        <Breadcrumb.Item>test</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <Content style={{
-                        margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,
-                    }}
-                    >
-                        Content
-                    </Content>
+                    <Switch>
+                        <Route exact path="/admin/menu1/test" component={TestContainer}/>
+                    </Switch>
                     <Footer style={{textAlign: 'center'}}>
                         copyright ©2018 by 凉衫薄
                     </Footer>
@@ -92,4 +91,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Admin;
