@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Button} from 'antd';
 
 class ReduxPage extends Component {
 
@@ -13,8 +14,8 @@ class ReduxPage extends Component {
             <div>
                 <h3 style={{color: this.props.themeColor}}>Header</h3>
                 <div>
-                    <button onClick={this.handleSwitchColor.bind(this, "red")}>Red</button>
-                    <button onClick={this.handleSwitchColor.bind(this, "blue")}>Blue</button>
+                    <Button onClick={this.handleSwitchColor.bind(this, "red")}>Red</Button>
+                    <Button onClick={this.handleSwitchColor.bind(this, "blue")}>Blue</Button>
                 </div>
                 <footer style={{color: this.props.themeColor}}>Footer</footer>
             </div>

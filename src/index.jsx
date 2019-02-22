@@ -6,6 +6,7 @@ import {BrowserRouter, Link, Route} from "react-router-dom";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {reduxPageReducer} from "./reducer/ReduxPageReducer.jsx";
+import "antd/dist/antd.css";
 
 const store = createStore(reduxPageReducer);
 
