@@ -4,7 +4,7 @@ import {changeColorAction} from "../../action/test/ChangeColorAction.jsx";
 
 const mapStateToProps = (state) => {
     return {
-        themeColor: state.themeColor
+        themeColor: state.test.themeColor
     }
 }
 
