@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import {Icon, Layout, Menu} from 'antd';
+import {Dropdown, Icon, Layout, Menu} from 'antd';
 import {Link, Route, Switch} from "react-router-dom";
-import {TestContainer} from "./container/test/TestContainer.jsx";
+import {TestContainer} from "../../container/test/TestContainer.jsx";
 import "./Admin.less";
 
-const {Header, Footer, Sider, Content} = Layout;
+const {Header, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
 
 class Admin extends Component {
@@ -21,6 +21,15 @@ class Admin extends Component {
     }
 
     render() {
+
+        const menu = (
+            <Menu>
+                <Menu.Item>
+                    <Link to="/login">退出登陆</Link>
+                </Menu.Item>
+            </Menu>
+        );
+
         return (
             <Layout>
                 <Sider
@@ -72,15 +81,21 @@ class Admin extends Component {
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{background: '#fff', padding: 0}}>
+                    <Header className="admin-header">
                         <Icon
                             className="trigger"
                             type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                             onClick={this.toggle.bind(this)}
                         />
+                        <Dropdown overlay={menu}>
+                            <a className="ant-dropdown-link"
+                               style={{float: "right", marginRight: "25px", fontSize: "18px"}}>
+                                Matrix <Icon type="down"/>
+                            </a>
+                        </Dropdown>
                     </Header>
                     <Switch>
-                        <Route exact path="/admin/menu1/test" component={TestContainer}/>
+                        <Route path="/admin/menu1/test" component={TestContainer}/>
                     </Switch>
                     <Footer style={{textAlign: 'center'}}>
                         copyright ©2018 by 凉衫薄
