@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import {testReducer} from "./reducer/test/TestReducer.jsx";
@@ -12,8 +12,8 @@ const store = createStore(reducer);
 
 ReactDOM.render((
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
             <Admin/>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>
 ), document.getElementById("root"));
