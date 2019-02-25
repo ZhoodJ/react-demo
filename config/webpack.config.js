@@ -33,7 +33,13 @@ module.exports = {
         port: '3000',
         inline: true,
         open: true,
-        compress: true
+        compress: true,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080',
+                pathRewrite: {"^/api": ""}
+            }
+        }
     },
 
     plugins: [
