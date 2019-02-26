@@ -11,8 +11,8 @@ class Login extends Component {
         super();
         this.state = {
             email: '',
-            name: '',
-            password: ''
+            password: '',
+            rememberMe: false
         }
     }
 
@@ -21,12 +21,24 @@ class Login extends Component {
     }
 
     handleButtonClick(e) {
-        axios.post('/api/user', this.state
-        ).then(function (response) {
+        axios({
+            method: "post",
+            url: "/api/login",
+            withCredentials: true,
+            data: {
+                data: {
+                    user: [this.state]
+                }
+            }
+        }).then((response) => {
             console.log(response);
-        }).catch(function (error) {
+        }).catch((error) => {
             console.log(error);
         });
+    }
+
+    handleChecked(e) {
+        this.setState({rememberMe: this.state.rememberMe ? false : true})
     }
 
     render() {
@@ -37,11 +49,10 @@ class Login extends Component {
                     <div className="login-div">
                         <Input size="large" type="email" placeholder="请输入邮箱" className="input" value={this.state.email}
                                onChange={this.handleInputChange.bind(this, "email")}/>
-                        <Input size="large" type="text" placeholder="请输入昵称" className="input" value={this.state.name}
-                               onChange={this.handleInputChange.bind(this, "name")}/>
                         <Input size="large" type="password" placeholder="请输入密码" className="input"
                                value={this.state.password} onChange={this.handleInputChange.bind(this, "password")}/>
-                        <Checkbox className="checkbox">记住密码</Checkbox>
+                        <Checkbox className="checkbox" checked={this.state.rememberMe}
+                                  onChange={this.handleChecked.bind(this)}>记住密码</Checkbox>
                         <br/>
                         <Button type="primary" size="large" className="button"
                                 onClick={this.handleButtonClick.bind(this)}>登陆</Button>
