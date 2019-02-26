@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Button, Checkbox, Input, Layout} from 'antd';
 import axios from "axios";
+import {withRouter} from "react-router-dom";
 import "./Login.less";
 
 const {Content, Footer} = Layout;
@@ -31,7 +32,9 @@ class Login extends Component {
                 }
             }
         }).then((response) => {
-            console.log(response);
+            if (response.data.status) {
+                this.props.history.push("/admin");
+            }
         }).catch((error) => {
             console.log(error);
         });
@@ -66,4 +69,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
