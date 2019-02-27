@@ -4,7 +4,7 @@ import {changeCollapsedAction} from "../../action/admin/AdminAction.jsx";
 
 const mapStateToProps = (state) => {
     return {
-        collapsed: state.admin.collapsed
+        ...state
     }
 }
 

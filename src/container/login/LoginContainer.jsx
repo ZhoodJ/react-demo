@@ -4,9 +4,7 @@ import {changeInputValueAction} from "../../action/login/LoginAction.jsx";
 
 const mapStateToProps = (state) => {
     return {
-        email: state.login.email,
-        password: state.login.password,
-        rememberMe: state.login.rememberMe
+        ...state
     }
 }
 

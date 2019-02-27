@@ -24,9 +24,9 @@ class Login extends Component {
             data: {
                 data: {
                     user: [{
-                        email: this.props.email,
-                        password: this.props.password,
-                        rememberMe: this.props.rememberMe
+                        email: this.props.login.email,
+                        password: this.props.login.password,
+                        rememberMe: this.props.login.rememberMe
                     }]
                 }
             }
@@ -45,11 +45,13 @@ class Login extends Component {
             <Layout className="layout">
                 <Content className="content">
                     <div className="login-div">
-                        <Input size="large" type="email" placeholder="请输入邮箱" className="input" value={this.props.email}
+                        <Input size="large" type="email" placeholder="请输入邮箱" className="input"
+                               value={this.props.login.email}
                                onChange={this.handleInputChange.bind(this, "email")}/>
                         <Input size="large" type="password" placeholder="请输入密码" className="input"
-                               value={this.props.password} onChange={this.handleInputChange.bind(this, "password")}/>
-                        <Checkbox className="checkbox" checked={this.props.rememberMe}
+                               value={this.props.login.password}
+                               onChange={this.handleInputChange.bind(this, "password")}/>
+                        <Checkbox className="checkbox" checked={this.props.login.rememberMe}
                                   onChange={this.handleChecked.bind(this)}>记住密码</Checkbox>
                         <br/>
                         <Button type="primary" size="large" className="button"
