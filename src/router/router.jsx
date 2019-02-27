@@ -1,7 +1,7 @@
 import {HashRouter, Route, Switch} from "react-router-dom";
 import React from "react";
-import {LoginRouter} from "./router/login/LoginRouter.jsx";
-import {AdminRouter} from "./router/admin/AdminRouter.jsx";
+import {LoginRouter} from "./login/LoginRouter.jsx";
+import {AdminRouter} from "./admin/AdminRouter.jsx";
 
 export const App = () => {
     return (

@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import {Dropdown, Icon, Layout, Menu} from 'antd';
-import {Link} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
+import User from "../user/user/User.jsx";
 import "./Admin.less";
 
-const {Header, Footer, Sider} = Layout;
+const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
 
 class Admin extends Component {
@@ -38,7 +39,7 @@ class Admin extends Component {
                             key="1"
                             title={<span><Icon type="user"/><span>用户管理</span></span>}
                         >
-                            <Menu.Item key="1-1">{/*<Link to="/admin/user/test">测试redux</Link>*/}</Menu.Item>
+                            <Menu.Item key="1-1"><Link to="/admin/user/user">所有用户</Link></Menu.Item>
                             <Menu.Item key="1-2">子菜单二</Menu.Item>
                             <Menu.Item key="1-3">子菜单三</Menu.Item>
                         </SubMenu>
@@ -86,10 +87,12 @@ class Admin extends Component {
                             </a>
                         </Dropdown>
                     </Header>
-                    {/*<Switch>
-                        <Route path="/admin/menu1/test" component={TestContainer}/>
-                    </Switch>*/}
-                    <Footer style={{textAlign: 'center'}}>
+                    <Content className="admin-content">
+                        <Switch>
+                            <Route path="/admin/user/user" component={User}/>
+                        </Switch>
+                    </Content>
+                    <Footer className="admin-footer">
                         copyright ©2018 by 凉衫薄
                     </Footer>
                 </Layout>
