@@ -8,15 +8,8 @@ const {SubMenu} = Menu;
 
 class Admin extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            collapsed: false
-        }
-    }
-
     toggle() {
-        this.setState({collapsed: this.state.collapsed ? false : true})
+        this.props.onCollapsedChange(this.props.collapsed ? false : true);
     }
 
     render() {
@@ -34,7 +27,7 @@ class Admin extends Component {
                 <Sider
                     trigger={null}
                     collapsible
-                    collapsed={this.state.collapsed}
+                    collapsed={this.props.collapsed}
                     style={{
                         height: "100vh"
                     }}
@@ -83,7 +76,7 @@ class Admin extends Component {
                     <Header className="admin-header">
                         <Icon
                             className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
                             onClick={this.toggle.bind(this)}
                         />
                         <Dropdown overlay={menu}>

@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import {loginReducer} from "./reducer/login/LoginReducer.jsx";
+import {adminReducer} from "./reducer/admin/AdminReducer.jsx";
 import {App} from "./router.jsx";
 import "antd/dist/antd.css";
 
-let reducer = combineReducers({login: loginReducer});
+let reducer = combineReducers({admin: adminReducer, login: loginReducer});
 const store = createStore(reducer);
 
 ReactDOM.render((
