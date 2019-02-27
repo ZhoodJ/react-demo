@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Dropdown, Icon, Layout, Menu} from 'antd';
-import {Link, Route, Switch} from "react-router-dom";
-import {TestContainer} from "../../container/test/TestContainer.jsx";
+import {Link} from "react-router-dom";
 import "./Admin.less";
 
 const {Header, Footer, Sider} = Layout;
@@ -44,9 +43,9 @@ class Admin extends Component {
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <SubMenu
                             key="1"
-                            title={<span><Icon type="user"/><span>菜单一</span></span>}
+                            title={<span><Icon type="user"/><span>用户管理</span></span>}
                         >
-                            <Menu.Item key="1-1"><Link to="/admin/menu1/test">测试redux</Link></Menu.Item>
+                            <Menu.Item key="1-1">{/*<Link to="/admin/menu1/test">测试redux</Link>*/}</Menu.Item>
                             <Menu.Item key="1-2">子菜单二</Menu.Item>
                             <Menu.Item key="1-3">子菜单三</Menu.Item>
                         </SubMenu>
@@ -94,9 +93,9 @@ class Admin extends Component {
                             </a>
                         </Dropdown>
                     </Header>
-                    <Switch>
+                    {/*<Switch>
                         <Route path="/admin/menu1/test" component={TestContainer}/>
-                    </Switch>
+                    </Switch>*/}
                     <Footer style={{textAlign: 'center'}}>
                         copyright ©2018 by 凉衫薄
                     </Footer>

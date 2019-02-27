@@ -8,17 +8,12 @@ const {Content, Footer} = Layout;
 
 class Login extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            email: '',
-            password: '',
-            rememberMe: false
-        }
+    handleInputChange(name, e) {
+        this.props.onInputValueChange(name, e.target.value);
     }
 
-    handleInputChange(name, e) {
-        this.setState({[name]: e.target.value});
+    handleChecked(e) {
+        this.props.onInputValueChange('rememberMe', e.target.checked);
     }
 
     handleButtonClick(e) {
@@ -28,7 +23,11 @@ class Login extends Component {
             withCredentials: true,
             data: {
                 data: {
-                    user: [this.state]
+                    user: [{
+                        email: this.props.email,
+                        password: this.props.password,
+                        rememberMe: this.props.rememberMe
+                    }]
                 }
             }
         }).then((response) => {
@@ -40,21 +39,17 @@ class Login extends Component {
         });
     }
 
-    handleChecked(e) {
-        this.setState({rememberMe: this.state.rememberMe ? false : true})
-    }
-
     render() {
 
         return (
             <Layout className="layout">
                 <Content className="content">
                     <div className="login-div">
-                        <Input size="large" type="email" placeholder="请输入邮箱" className="input" value={this.state.email}
+                        <Input size="large" type="email" placeholder="请输入邮箱" className="input" value={this.props.email}
                                onChange={this.handleInputChange.bind(this, "email")}/>
                         <Input size="large" type="password" placeholder="请输入密码" className="input"
-                               value={this.state.password} onChange={this.handleInputChange.bind(this, "password")}/>
-                        <Checkbox className="checkbox" checked={this.state.rememberMe}
+                               value={this.props.password} onChange={this.handleInputChange.bind(this, "password")}/>
+                        <Checkbox className="checkbox" checked={this.props.rememberMe}
                                   onChange={this.handleChecked.bind(this)}>记住密码</Checkbox>
                         <br/>
                         <Button type="primary" size="large" className="button"
