@@ -8,7 +8,7 @@ export const App = () => {
         <HashRouter>
             <Switch>
                 <Route path="/admin" component={AdminRouter}/>
-                <Route path="/login" component={LoginRouter}/>
+                <Route exact path="/login" component={LoginRouter}/>
             </Switch>
         </HashRouter>
     )

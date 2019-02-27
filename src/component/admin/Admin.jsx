@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Dropdown, Icon, Layout, Menu} from 'antd';
 import {Link, Route, Switch} from "react-router-dom";
-import User from "../user/user/User.jsx";
+import {UserRouter} from "../../router/user/UserRouter.jsx";
 import "./Admin.less";
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -89,7 +89,7 @@ class Admin extends Component {
                     </Header>
                     <Content className="admin-content">
                         <Switch>
-                            <Route path="/admin/user/user" component={User}/>
+                            <Route exact path="/admin/user/user" component={UserRouter}/>
                         </Switch>
                     </Content>
                     <Footer className="admin-footer">
