@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Checkbox, Input, Layout} from 'antd';
+import {Button, Checkbox, Input, Layout, message} from 'antd';
 import axios from "axios";
 import {withRouter} from "react-router-dom";
 import "./Login.less";
@@ -32,10 +32,13 @@ class Login extends Component {
             }
         }).then((response) => {
             if (response.data.status) {
+                message.success("登陆成功");
                 this.props.history.push("/admin");
+            } else {
+                message.error("邮箱或密码错误");
             }
         }).catch((error) => {
-            console.log(error);
+            message.error("服务器错误");
         });
     }
 
