@@ -38,7 +38,7 @@ class Admin extends Component {
                             key="1"
                             title={<span><Icon type="user"/><span>用户管理</span></span>}
                         >
-                            <Menu.Item key="1-1">{/*<Link to="/admin/menu1/test">测试redux</Link>*/}</Menu.Item>
+                            <Menu.Item key="1-1">{/*<Link to="/admin/user/test">测试redux</Link>*/}</Menu.Item>
                             <Menu.Item key="1-2">子菜单二</Menu.Item>
                             <Menu.Item key="1-3">子菜单三</Menu.Item>
                         </SubMenu>

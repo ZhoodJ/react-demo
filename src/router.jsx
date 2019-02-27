@@ -1,14 +1,14 @@
 import {HashRouter, Route, Switch} from "react-router-dom";
 import React from "react";
-import {LoginContainer} from "./container/login/LoginContainer.jsx";
-import {AdminContainer} from "./container/admin/AdminContainer.jsx";
+import {LoginRouter} from "./router/login/LoginRouter.jsx";
+import {AdminRouter} from "./router/admin/AdminRouter.jsx";
 
 export const App = () => {
     return (
         <HashRouter>
             <Switch>
-                <Route path="/admin" component={AdminContainer}/>
-                <Route exact path="/login" component={LoginContainer}/>
+                <Route path="/admin" component={AdminRouter}/>
+                <Route path="/login" component={LoginRouter}/>
             </Switch>
         </HashRouter>
     )
