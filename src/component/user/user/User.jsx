@@ -1,10 +1,41 @@
-import {Breadcrumb, Table} from 'antd';
+import {Breadcrumb, message, Table} from 'antd';
 import React, {Component} from "react";
+import axios from "axios";
 
 class User extends Component {
 
     onSelectChange(selectedRowKeys) {
         this.props.onSelectedChange(selectedRowKeys);
+    }
+
+    componentWillMount() {
+        axios({
+            method: "get",
+            url: "/api/user",
+            withCredentials: true,
+        }).then((response) => {
+            if (response.data.status) {
+                message.success("请求成功");
+                let data = [];
+                response.data.data.map((value) => {
+                    data.push({
+                        key: value.id,
+                        id: value.id,
+                        email: value.email,
+                        name: value.name,
+                        password: value.password,
+                        salt: value.salt
+                    })
+                });
+                this.props.onDataChange(data);
+                console.log(data);
+            } else {
+                message.error("请求失败");
+                console.log(response.data);
+            }
+        }).catch((error) => {
+            message.error("服务器错误");
+        });
     }
 
     render() {
