@@ -1,7 +1,3 @@
-export const changeInputValueAction = (type, value) => {
-    return {type: type, value: value}
-}
-
-export const changeAuthenticationAction = (value) => {
-    return {type: 'isAuthentication', value: value}
+export const loginAction = (value) => {
+    return {type: 'login', value: value}
 }

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Button, Checkbox, Input, Layout, message} from 'antd';
 import axios from "axios";
-import {withRouter} from "react-router-dom";
 import "./Login.less";
 
 const {Content, Footer} = Layout;
@@ -9,11 +8,11 @@ const {Content, Footer} = Layout;
 class Login extends Component {
 
     handleInputChange(name, e) {
-        this.props.onInputValueChange(name, e.target.value);
+        this.props.save({[name]: e.target.value});
     }
 
     handleChecked(e) {
-        this.props.onInputValueChange('rememberMe', e.target.checked);
+        this.props.save({'rememberMe': e.target.checked});
     }
 
     handleButtonClick(e) {
@@ -33,7 +32,7 @@ class Login extends Component {
         }).then((response) => {
             if (response.data.status) {
                 message.success("登陆成功");
-                this.props.onLoginSuccess(true);
+                this.props.save({isAuthentication: true});
                 this.props.history.push("/admin");
             } else {
                 message.error("邮箱或密码错误");
@@ -70,4 +69,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+export default Login;
