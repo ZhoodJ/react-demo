@@ -1,12 +1,11 @@
 import {Breadcrumb, message, Table} from 'antd';
 import React, {Component} from "react";
-import {withRouter} from "react-router-dom";
 import axios from "axios";
 
 class Permission extends Component {
 
     handleSelectedChange(selectedRowKeys) {
-        this.props.onSelectedChange(selectedRowKeys);
+        this.props.save({selectedRowKeys: selectedRowKeys});
     }
 
     componentWillMount() {
@@ -26,7 +25,7 @@ class Permission extends Component {
                         code: value.code,
                     })
                 });
-                this.props.onDataChange(data);
+                this.props.save({data: data});
             } else {
                 message.error(response.data.message);
             }
@@ -75,5 +74,5 @@ class Permission extends Component {
     }
 }
 
-export default withRouter(Permission);
+export default Permission;
 

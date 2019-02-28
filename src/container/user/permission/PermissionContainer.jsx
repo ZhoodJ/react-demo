@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import Permission from "../../../component/user/permission/Permission.jsx";
-import {changeDataAction, changeSelectedAction} from "../../../action/user/permission/PermissionAction.jsx";
+import {permissionAction} from "../../../action/user/permission/PermissionAction.jsx";
+import {withRouter} from "react-router-dom";
 
 const mapStateToProps = (state) => {
     return {
@@ -10,13 +11,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDataChange: (value) => {
-            dispatch(changeDataAction(value))
-        },
-        onSelectedChange: (value) => {
-            dispatch(changeSelectedAction(value))
+        save: (value) => {
+            dispatch(permissionAction(value))
         }
     }
 }
 
-export const PermissionContainer = connect(mapStateToProps, mapDispatchToProps)(Permission);
+export const PermissionContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(Permission));

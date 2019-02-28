@@ -6,10 +6,8 @@ export const permissionReducer = (state, action) => {
         }
     }
     switch (action.type) {
-        case 'permission_selectedRowKeys':
-            return {...state, selectedRowKeys: action.value}
-        case 'permission_data':
-            return {...state, data: action.value}
+        case 'permission':
+            return {...state, ...action.value}
         default:
             return state
     }
