@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {Dropdown, Icon, Layout, Menu} from 'antd';
-import {Link, Route, Switch} from "react-router-dom";
+import {Dropdown, Icon, Layout, Menu, message} from 'antd';
+import {Link, Route, Switch, withRouter} from "react-router-dom";
 import {UserRouter} from "../../router/user/UserRouter.jsx";
 import "./Admin.less";
 
@@ -11,6 +11,13 @@ class Admin extends Component {
 
     toggle() {
         this.props.onCollapsedChange(this.props.admin.collapsed ? false : true);
+    }
+
+    componentWillMount() {
+        if (!this.props.login.isAuthentication) {
+            message.warn("请先登陆");
+            this.props.history.push("/login");
+        }
     }
 
     render() {
@@ -97,4 +104,4 @@ class Admin extends Component {
     }
 }
 
-export default Admin;
+export default withRouter(Admin);

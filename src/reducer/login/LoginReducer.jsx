@@ -3,7 +3,8 @@ export const loginReducer = (state, action) => {
         return {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            isAuthentication: false
         }
     }
     switch (action.type) {
@@ -13,6 +14,8 @@ export const loginReducer = (state, action) => {
             return {...state, password: action.value}
         case 'rememberMe':
             return {...state, rememberMe: action.value}
+        case 'isAuthentication':
+            return {...state, isAuthentication: action.value}
         default:
             return state
     }

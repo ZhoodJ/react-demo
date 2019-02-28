@@ -33,6 +33,7 @@ class Login extends Component {
         }).then((response) => {
             if (response.data.status) {
                 message.success("登陆成功");
+                this.props.onLoginSuccess(true);
                 this.props.history.push("/admin");
             } else {
                 message.error("邮箱或密码错误");
