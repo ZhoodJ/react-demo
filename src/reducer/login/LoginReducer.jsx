@@ -4,7 +4,8 @@ export const loginReducer = (state, action) => {
             email: '',
             password: '',
             rememberMe: false,
-            isAuthentication: false
+            isAuthentication: false,
+            name: ''
         }
     }
     switch (action.type) {

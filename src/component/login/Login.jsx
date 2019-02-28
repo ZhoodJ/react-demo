@@ -32,7 +32,7 @@ class Login extends Component {
         }).then((response) => {
             if (response.data.status) {
                 message.success("登陆成功");
-                this.props.save({isAuthentication: true});
+                this.props.save({isAuthentication: true, name: response.data.data});
                 this.props.history.push("/admin");
             } else {
                 message.error("邮箱或密码错误");

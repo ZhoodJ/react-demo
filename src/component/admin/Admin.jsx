@@ -86,7 +86,7 @@ class Admin extends Component {
                         <Dropdown overlay={menu}>
                             <a className="ant-dropdown-link"
                                style={{float: "right", marginRight: "25px", fontSize: "18px"}}>
-                                Matrix <Icon type="down"/>
+                                {this.props.login.name} <Icon type="down"/>
                             </a>
                         </Dropdown>
                     </Header>
