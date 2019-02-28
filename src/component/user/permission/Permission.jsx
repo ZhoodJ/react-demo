@@ -1,6 +1,7 @@
-import {Breadcrumb, message, Table} from 'antd';
+import {Breadcrumb, Button, message, Table} from 'antd';
 import React, {Component} from "react";
 import axios from "axios";
+import "./Permission.less";
 
 class Permission extends Component {
 
@@ -61,12 +62,17 @@ class Permission extends Component {
         };
 
         return (
-            <div>
-                <Breadcrumb style={{padding: '20px', background: '#f0f2f5'}}>
+            <div className="page-content">
+                <Breadcrumb className="bread-crumb">
                     <Breadcrumb.Item>主页</Breadcrumb.Item>
                     <Breadcrumb.Item>用户管理</Breadcrumb.Item>
                     <Breadcrumb.Item>权限维护</Breadcrumb.Item>
                 </Breadcrumb>
+                <div className="button-header">
+                    <Button type="primary">新增</Button>
+                    <Button type="primary">修改</Button>
+                    <Button type="danger">删除</Button>
+                </div>
                 <Table rowSelection={rowSelection} dataSource={this.props.permission.data} columns={columns}/>
             </div>
 

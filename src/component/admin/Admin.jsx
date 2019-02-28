@@ -14,6 +14,20 @@ class Admin extends Component {
         this.props.save({collapsed: this.props.admin.collapsed ? false : true});
     }
 
+    logout() {
+        this.props.save({name: ''});
+        axios({
+            method: "get",
+            url: "/api/logout",
+            withCredentials: true,
+        }).then((response) => {
+            this.props.history.push("/login");
+        }).catch((error) => {
+            message.error("服务器错误");
+        });
+
+    }
+
     componentWillMount() {
         axios({
             method: "get",
@@ -36,7 +50,7 @@ class Admin extends Component {
         const menu = (
             <Menu>
                 <Menu.Item>
-                    <Link to="/login">退出登陆</Link>
+                    <a onClick={this.logout.bind(this)}>退出登陆</a>
                 </Menu.Item>
             </Menu>
         );
