@@ -3,6 +3,7 @@ import {Dropdown, Icon, Layout, Menu, message} from 'antd';
 import {Link, Route, Switch} from "react-router-dom";
 import {UserRouter} from "../../router/user/UserRouter.jsx";
 import "./Admin.less";
+import axios from "axios";
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
@@ -14,10 +15,20 @@ class Admin extends Component {
     }
 
     componentWillMount() {
-        if (!this.props.login.isAuthentication) {
-            message.warn("请先登陆");
-            this.props.history.push("/login");
-        }
+        axios({
+            method: "get",
+            url: "/api/isAuthentication",
+            withCredentials: true,
+        }).then((response) => {
+            if (!response.data.status) {
+                message.warning(response.data.message);
+                this.props.history.push("/login");
+            } else {
+                this.props.save({name: response.data.data})
+            }
+        }).catch((error) => {
+            message.error("服务器错误");
+        });
     }
 
     render() {
@@ -86,7 +97,7 @@ class Admin extends Component {
                         <Dropdown overlay={menu}>
                             <a className="ant-dropdown-link"
                                style={{float: "right", marginRight: "25px", fontSize: "18px"}}>
-                                {this.props.login.name} <Icon type="down"/>
+                                {this.props.admin.name} <Icon type="down"/>
                             </a>
                         </Dropdown>
                     </Header>

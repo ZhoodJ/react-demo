@@ -1,7 +1,8 @@
 export const adminReducer = (state, action) => {
     if (!state) {
         return {
-            collapsed: false
+            collapsed: false,
+            name: '',
         }
     }
     switch (action.type) {
