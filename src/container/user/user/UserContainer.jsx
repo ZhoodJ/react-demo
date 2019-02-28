@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import User from "../../../component/user/user/User.jsx";
-import {changeDataAction, changeSelectedAction} from "../../../action/user/user/UserAction.jsx";
+import {withRouter} from "react-router-dom";
+import {userAction} from "../../../action/user/user/UserAction.jsx";
 
 const mapStateToProps = (state) => {
     return {
@@ -10,13 +11,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDataChange: (value) => {
-            dispatch(changeDataAction(value))
-        },
-        onSelectedChange: (value) => {
-            dispatch(changeSelectedAction(value))
+        save: (value) => {
+            dispatch(userAction(value))
         }
     }
 }
 
-export const UserContainer = connect(mapStateToProps, mapDispatchToProps)(User);
+export const UserContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(User));

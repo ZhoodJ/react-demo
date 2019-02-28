@@ -1,12 +1,11 @@
 import {Breadcrumb, message, Table} from 'antd';
 import React, {Component} from "react";
-import {withRouter} from "react-router-dom";
 import axios from "axios";
 
 class User extends Component {
 
     handleSelectedChange(selectedRowKeys) {
-        this.props.onSelectedChange(selectedRowKeys);
+        this.props.save({selectedRowKeys: selectedRowKeys});
     }
 
     componentWillMount() {
@@ -28,7 +27,7 @@ class User extends Component {
                         salt: value.salt
                     })
                 });
-                this.props.onDataChange(data);
+                this.props.save({data: data});
             } else {
                 message.error(response.data.message);
             }
@@ -85,5 +84,5 @@ class User extends Component {
     }
 }
 
-export default withRouter(User);
+export default User;
 

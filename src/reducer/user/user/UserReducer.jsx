@@ -6,10 +6,8 @@ export const userReducer = (state, action) => {
         }
     }
     switch (action.type) {
-        case 'user_selectedRowKeys':
-            return {...state, selectedRowKeys: action.value}
-        case 'user_data':
-            return {...state, data: action.value}
+        case 'user':
+            return {...state, ...action.value}
         default:
             return state
     }

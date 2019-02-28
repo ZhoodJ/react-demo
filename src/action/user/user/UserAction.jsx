@@ -1,7 +1,3 @@
-export const changeSelectedAction = (value) => {
-    return {type: 'user_selectedRowKeys', value: value}
-}
-
-export const changeDataAction = (value) => {
-    return {type: 'user_data', value: value}
+export const userAction = (value) => {
+    return {type: 'user', value: value}
 }
