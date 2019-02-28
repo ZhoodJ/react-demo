@@ -1,5 +1,6 @@
 import {Breadcrumb, message, Table} from 'antd';
 import React, {Component} from "react";
+import {withRouter} from "react-router-dom";
 import axios from "axios";
 
 class User extends Component {
@@ -15,7 +16,7 @@ class User extends Component {
             withCredentials: true,
         }).then((response) => {
             if (response.data.status) {
-                message.success("请求成功");
+                message.success(response.data.message);
                 let data = [];
                 response.data.data.map((value) => {
                     data.push({
@@ -29,10 +30,15 @@ class User extends Component {
                 });
                 this.props.onDataChange(data);
             } else {
-                message.error("请求失败");
+                message.error(response.data.message);
             }
         }).catch((error) => {
-            message.error("服务器错误");
+            if (error.response.status === 403) {
+                message.error(error.response.data.message);
+                this.props.history.push("/login");
+            } else {
+                message.error("服务器错误");
+            }
         });
     }
 
@@ -79,5 +85,5 @@ class User extends Component {
     }
 }
 
-export default User;
+export default withRouter(User);
 
