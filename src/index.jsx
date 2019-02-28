@@ -5,10 +5,11 @@ import {Provider} from "react-redux";
 import {loginReducer} from "./reducer/login/LoginReducer.jsx";
 import {adminReducer} from "./reducer/admin/AdminReducer.jsx";
 import {userReducer} from "./reducer/user/user/UserReducer.jsx";
+import {roleReducer} from "./reducer/user/role/RoleReducer.jsx";
 import {App} from "./router/router.jsx";
 import "antd/dist/antd.css";
 
-let reducer = combineReducers({admin: adminReducer, login: loginReducer, user: userReducer});
+let reducer = combineReducers({admin: adminReducer, login: loginReducer, user: userReducer, role: roleReducer});
 const store = createStore(reducer);
 
 ReactDOM.render((

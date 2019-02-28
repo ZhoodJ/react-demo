@@ -39,8 +39,8 @@ class Admin extends Component {
                             key="1"
                             title={<span><Icon type="user"/><span>用户管理</span></span>}
                         >
-                            <Menu.Item key="1-1"><Link to="/admin/user/user">所有用户</Link></Menu.Item>
-                            <Menu.Item key="1-2">子菜单二</Menu.Item>
+                            <Menu.Item key="1-1"><Link to="/admin/user/user">用户维护</Link></Menu.Item>
+                            <Menu.Item key="1-2"><Link to="/admin/user/role">角色维护</Link></Menu.Item>
                             <Menu.Item key="1-3">子菜单三</Menu.Item>
                         </SubMenu>
                         <SubMenu
@@ -89,7 +89,7 @@ class Admin extends Component {
                     </Header>
                     <Content className="admin-content">
                         <Switch>
-                            <Route exact path="/admin/user/user" component={UserRouter}/>
+                            <Route path="/admin/user" component={UserRouter}/>
                         </Switch>
                     </Content>
                     <Footer className="admin-footer">

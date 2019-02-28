@@ -1,4 +1,4 @@
-export const userReducer = (state, action) => {
+export const roleReducer = (state, action) => {
     if (!state) {
         return {
             selectedRowKeys: [],
@@ -6,9 +6,9 @@ export const userReducer = (state, action) => {
         }
     }
     switch (action.type) {
-        case 'user_selectedRowKeys':
+        case 'role_selectedRowKeys':
             return {...state, selectedRowKeys: action.value}
-        case 'user_data':
+        case 'role_data':
             return {...state, data: action.value}
         default:
             return state
