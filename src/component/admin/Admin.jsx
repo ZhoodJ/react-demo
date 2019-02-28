@@ -41,7 +41,7 @@ class Admin extends Component {
                         >
                             <Menu.Item key="1-1"><Link to="/admin/user/user">用户维护</Link></Menu.Item>
                             <Menu.Item key="1-2"><Link to="/admin/user/role">角色维护</Link></Menu.Item>
-                            <Menu.Item key="1-3">子菜单三</Menu.Item>
+                            <Menu.Item key="1-3"><Link to="/admin/user/permission">权限维护</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="2"
@@ -67,10 +67,6 @@ class Admin extends Component {
                             <Menu.Item key="4-2">子菜单二</Menu.Item>
                             <Menu.Item key="4-3">子菜单三</Menu.Item>
                         </SubMenu>
-                        <Menu.Item key="5">
-                            <Icon type="file"/>
-                            <span>菜单五</span>
-                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
