@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Dropdown, Icon, Layout, Menu, message} from 'antd';
-import {Link, Route, Switch, withRouter} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 import {UserRouter} from "../../router/user/UserRouter.jsx";
 import "./Admin.less";
 
@@ -10,7 +10,7 @@ const {SubMenu} = Menu;
 class Admin extends Component {
 
     toggle() {
-        this.props.onCollapsedChange(this.props.admin.collapsed ? false : true);
+        this.props.save({collapsed: this.props.admin.collapsed ? false : true});
     }
 
     componentWillMount() {
@@ -104,4 +104,4 @@ class Admin extends Component {
     }
 }
 
-export default withRouter(Admin);
+export default Admin;

@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import Admin from "../../component/admin/Admin.jsx";
-import {changeCollapsedAction} from "../../action/admin/AdminAction.jsx";
+import {adminAction} from "../../action/admin/AdminAction.jsx";
+import {withRouter} from "react-router-dom";
 
 const mapStateToProps = (state) => {
     return {
@@ -10,10 +11,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onCollapsedChange: (value) => {
-            dispatch(changeCollapsedAction(value))
+        save: (value) => {
+            dispatch(adminAction(value))
         }
     }
 }
 
-export const AdminContainer = connect(mapStateToProps, mapDispatchToProps)(Admin);
+export const AdminContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(Admin));

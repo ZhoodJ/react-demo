@@ -1,3 +1,3 @@
-export const changeCollapsedAction = (value) => {
-    return {type: 'collapsed', value: value}
+export const adminAction = (value) => {
+    return {type: 'admin', value: value}
 }

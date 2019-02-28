@@ -5,8 +5,8 @@ export const adminReducer = (state, action) => {
         }
     }
     switch (action.type) {
-        case 'collapsed':
-            return {...state, collapsed: action.value}
+        case 'admin':
+            return {...state, ...action.value}
         default:
             return state
     }
