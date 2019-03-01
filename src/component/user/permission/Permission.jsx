@@ -179,8 +179,9 @@ class Permission extends Component {
                     <Button type="primary" onClick={this.handleEdit.bind(this)}>修改</Button>
                     <Button type="danger" onClick={this.handleDelete.bind(this)}>删除</Button>
                 </div>
-                <Table rowSelection={rowSelection} dataSource={this.props.permission.data} columns={columns} bordered/>
-                < Modal
+                <Table rowSelection={rowSelection} dataSource={this.props.permission.data} columns={columns} bordered
+                       className="table"/>
+                <Modal
                     title="新增编辑"
                     visible={this.props.permission.visible}
                     onOk={this.handleOk.bind(this)}
