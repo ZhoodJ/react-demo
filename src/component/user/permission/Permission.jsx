@@ -32,12 +32,17 @@ class Permission extends Component {
     }
 
     handleDelete() {
-        if (this.props.permission.selectedRowKeys.length !== 1) {
-            message.error("请选中一行")
+        if (this.props.permission.selectedRowKeys.length < 1) {
+            message.error("请至少选中一行")
         } else {
             axios({
                 method: "delete",
-                url: "/api/permission/" + this.props.permission.selectedRowKeys[0],
+                url: "/api/permission",
+                data: {
+                    data: {
+                        permission: this.props.permission.selectedRow
+                    }
+                },
                 withCredentials: true,
             }).then((response) => {
                 if (response.data.status) {
