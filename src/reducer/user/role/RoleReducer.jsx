@@ -3,6 +3,12 @@ export const roleReducer = (state, action) => {
         return {
             selectedRowKeys: [],
             data: [],
+            selectedRow: [],
+            id: '',
+            name: '',
+            code: '',
+            visible: false,
+            isAdd: true
         }
     }
     switch (action.type) {

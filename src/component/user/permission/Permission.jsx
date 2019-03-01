@@ -98,6 +98,9 @@ class Permission extends Component {
                     })
                 });
                 this.props.save({visible: false, name: '', code: '', id: '', data: data})
+                if (!this.props.permission.isAdd) {
+                    this.props.save({selectedRowKeys: [], selectedRow: []})
+                }
             } else {
                 message.error(response.data.message);
             }
