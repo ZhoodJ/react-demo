@@ -9,7 +9,8 @@ export const userReducer = (state, action) => {
             name: '',
             password: '',
             visible: false,
-            isAdd: true
+            isAdd: true,
+            isPassword: false
         }
     }
     switch (action.type) {

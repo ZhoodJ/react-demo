@@ -14,7 +14,7 @@ class User extends Component {
     }
 
     handleAdd() {
-        this.props.save({visible: true, isAdd: true})
+        this.props.save({visible: true, isAdd: true, isPassword: false})
     }
 
     handleEdit() {
@@ -24,10 +24,26 @@ class User extends Component {
             this.props.save({
                 email: this.props.user.selectedRow[0].email,
                 name: this.props.user.selectedRow[0].name,
-                password: this.props.user.selectedRow[0].password,
                 id: this.props.user.selectedRow[0].id,
+                password: "",
                 visible: true,
-                isAdd: false
+                isAdd: false,
+                isPassword: false
+            });
+        }
+    }
+
+    handleChangePassword() {
+        if (this.props.user.selectedRowKeys.length !== 1) {
+            message.error("请选中一行")
+        } else {
+            this.props.save({
+                email: this.props.user.selectedRow[0].email,
+                name: this.props.user.selectedRow[0].name,
+                id: this.props.user.selectedRow[0].id,
+                password: "",
+                visible: true,
+                isPassword: true
             });
         }
     }
@@ -55,7 +71,6 @@ class User extends Component {
                             id: value.id,
                             email: value.email,
                             name: value.name,
-                            password: value.password
                         })
                     });
                     this.props.save({data: data, selectedRow: [], selectedRowKeys: []});
@@ -81,7 +96,7 @@ class User extends Component {
             data: {
                 data: {
                     user: [{
-                        id: this.props.user.isAdd ? '' : this.props.user.id,
+                        id: this.props.user.id,
                         name: this.props.user.name,
                         email: this.props.user.email,
                         password: this.props.user.password
@@ -98,10 +113,17 @@ class User extends Component {
                         id: value.id,
                         name: value.name,
                         email: value.email,
-                        password: value.password
                     })
                 });
-                this.props.save({visible: false, name: '', email: '', id: '', password: '', data: data})
+                this.props.save({
+                    visible: false,
+                    name: '',
+                    email: '',
+                    id: '',
+                    password: '',
+                    data: data,
+                    isPassword: false
+                })
                 if (!this.props.user.isAdd) {
                     this.props.save({selectedRowKeys: [], selectedRow: []})
                 }
@@ -119,7 +141,7 @@ class User extends Component {
     }
 
     handleCancel() {
-        this.props.save({visible: false, name: '', email: '', id: '', password: ''})
+        this.props.save({visible: false, name: '', email: '', id: '', password: '', isPassword: false})
     }
 
     componentWillMount() {
@@ -137,8 +159,6 @@ class User extends Component {
                         id: value.id,
                         email: value.email,
                         name: value.name,
-                        password: value.password,
-                        salt: value.salt
                     })
                 });
                 this.props.save({data: data});
@@ -169,14 +189,6 @@ class User extends Component {
             title: '姓名',
             dataIndex: 'name',
             key: 'name',
-        }, {
-            title: '密码',
-            dataIndex: 'password',
-            key: 'password',
-        }, {
-            title: '盐',
-            key: 'salt',
-            dataIndex: 'salt',
         }];
 
         const rowSelection = {
@@ -194,12 +206,13 @@ class User extends Component {
                 <div className="button-header">
                     <Button type="primary" onClick={this.handleAdd.bind(this)}>新增</Button>
                     <Button type="primary" onClick={this.handleEdit.bind(this)}>修改</Button>
+                    <Button type="primary" onClick={this.handleChangePassword.bind(this)}>重置密码</Button>
                     <Button type="danger" onClick={this.handleDelete.bind(this)}>删除</Button>
                 </div>
                 <Table rowSelection={rowSelection} dataSource={this.props.user.data} columns={columns} bordered
                        className="table"/>
                 <Modal
-                    title="新增编辑"
+                    title={this.props.user.isPassword ? "修改密码" : "新增编辑"}
                     visible={this.props.user.visible}
                     onOk={this.handleOk.bind(this)}
                     onCancel={this.handleCancel.bind(this)}
@@ -207,15 +220,22 @@ class User extends Component {
                     cancelText="取消"
                 >
                     <div>
-                        <Input placeholder="邮箱" type="email" allowClear style={{marginButton: '20px'}}
-                               value={this.props.user.email}
-                               onChange={this.handleInputValueChange.bind(this, 'email')}/>
-                        <Input placeholder="昵称" type="text" allowClear style={{marginTop: '20px', marginButton: '20px'}}
-                               value={this.props.user.name}
-                               onChange={this.handleInputValueChange.bind(this, 'name')}/>
-                        <Input placeholder="密码" type="password" allowClear style={{marginTop: '20px'}}
-                               value={this.props.user.password}
-                               onChange={this.handleInputValueChange.bind(this, "password")}/>
+                        {this.props.user.isPassword ? null :
+                            <div>
+                                <Input placeholder="邮箱" type="email" allowClear style={{marginBottom: '20px'}}
+                                       value={this.props.user.email}
+                                       onChange={this.handleInputValueChange.bind(this, 'email')}/>
+                                <Input placeholder="昵称" type="text" allowClear
+                                       style={{marginBottom: '20px'}}
+                                       value={this.props.user.name}
+                                       onChange={this.handleInputValueChange.bind(this, 'name')}/>
+                            </div>
+                        }
+                        {this.props.user.isAdd || this.props.user.isPassword ?
+                            <Input placeholder="密码" type="password" allowClear style={{marginBottom: '20px'}}
+                                   value={this.props.user.password}
+                                   onChange={this.handleInputValueChange.bind(this, 'password')}/> : null
+                        }
                     </div>
                 </Modal>
             </div>
