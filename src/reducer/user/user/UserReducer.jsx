@@ -3,6 +3,13 @@ export const userReducer = (state, action) => {
         return {
             selectedRowKeys: [],
             data: [],
+            selectedRow: [],
+            id: '',
+            email: '',
+            name: '',
+            password: '',
+            visible: false,
+            isAdd: true
         }
     }
     switch (action.type) {
