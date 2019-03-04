@@ -5,8 +5,44 @@ import "./Role.less"
 
 class Role extends Component {
 
-    handleSelectedChange(selectedRowKeys, selectedRow) {
+    handleRoleSelectedChange(selectedRowKeys, selectedRow) {
         this.props.save({role_selectedRowKeys: selectedRowKeys, role_selectedRow: selectedRow});
+    }
+
+    handlePermissionSelectedChange(selectedRowKeys, selectedRow) {
+        this.props.save({permission_selectedRowKeys: selectedRowKeys, permission_selectedRow: selectedRow})
+    }
+
+    handleRoleRowClick(record) {
+        axios({
+            method: "get",
+            url: "/api/role/permission/" + record.id,
+            withCredentials: true,
+        }).then((response) => {
+            if (response.data.status) {
+                let data = [];
+                if (response.data.data) {
+                    response.data.data.map((value) => {
+                        data.push({
+                            key: value.id,
+                            id: value.id,
+                            name: value.name,
+                            code: value.code,
+                        })
+                    });
+                }
+                this.props.save({permission_data: data});
+            } else {
+                message.error(response.data.message);
+            }
+        }).catch((error) => {
+            if (error.response.status === 403) {
+                message.error(error.response.data.message);
+                this.props.history.push("/login");
+            } else {
+                message.error("服务器错误");
+            }
+        });
     }
 
     handleInputValueChange(type, e) {
@@ -151,7 +187,7 @@ class Role extends Component {
 
     render() {
 
-        const columns = [{
+        const role_columns = [{
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
@@ -168,10 +204,32 @@ class Role extends Component {
             width: '33%'
         }];
 
-        const rowSelection = {
+        const permission_columns = [{
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+            width: '33%'
+        }, {
+            title: '权限名',
+            dataIndex: 'name',
+            key: 'name',
+            width: '33%'
+        }, {
+            title: '编码',
+            dataIndex: 'code',
+            key: 'code',
+            width: '33%'
+        }];
+
+        const role_rowSelection = {
             selectedRowKeys: this.props.role.role_selectedRowKeys,
-            onChange: this.handleSelectedChange.bind(this)
+            onChange: this.handleRoleSelectedChange.bind(this)
         };
+
+        const permission_rowSelection = {
+            selectedRowKeys: this.props.role.permission_selectedRowKeys,
+            onChange: this.handlePermissionSelectedChange.bind(this)
+        }
 
         return (
             <div className="page-content">
@@ -185,13 +243,26 @@ class Role extends Component {
                     <Button type="primary" onClick={this.handleEdit.bind(this)}>修改</Button>
                     <Button type="danger" onClick={this.handleDelete.bind(this)}>删除</Button>
                 </div>
-                <Table rowSelection={rowSelection}
+                <Table rowSelection={role_rowSelection}
                        dataSource={this.props.role.role_data}
-                       columns={columns}
+                       columns={role_columns}
                        className="table"
                        bordered
+                       pagination={{pageSize: 5}}
                        title={() => "角色"}
-                       scroll={{y: "300"}}
+                       onRow={(record) => {
+                           return {
+                               onClick: this.handleRoleRowClick.bind(this, record)
+                           };
+                       }}
+                />
+                <Table rowSelection={permission_rowSelection}
+                       dataSource={this.props.role.permission_data}
+                       columns={permission_columns}
+                       className="table"
+                       bordered
+                       pagination={{pageSize: 5}}
+                       title={() => "权限"}
                 />
                 <Modal
                     title="新增编辑"
