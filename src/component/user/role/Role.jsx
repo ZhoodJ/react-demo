@@ -33,12 +33,11 @@ class Role extends Component {
                 }
                 this.props.save({permission_data: data});
             } else {
-                message.error(response.data.message);
+                message.error("查询失败");
             }
         }).catch((error) => {
             if (error.response.status === 403) {
-                message.error(error.response.data.message);
-                this.props.history.push("/login");
+                message.error("会话过期，请重新登陆");
             } else {
                 message.error("服务器错误");
             }
@@ -82,24 +81,25 @@ class Role extends Component {
                 withCredentials: true,
             }).then((response) => {
                 if (response.data.status) {
-                    message.success(response.data.message);
+                    message.success("删除成功");
                     let data = [];
-                    response.data.data.map((value) => {
-                        data.push({
-                            key: value.id,
-                            id: value.id,
-                            name: value.name,
-                            code: value.code,
-                        })
-                    });
+                    if (response.data.data) {
+                        response.data.data.map((value) => {
+                            data.push({
+                                key: value.id,
+                                id: value.id,
+                                name: value.name,
+                                code: value.code,
+                            })
+                        });
+                    }
                     this.props.save({role_data: data, role_selectedRow: [], role_selectedRowKeys: []});
                 } else {
-                    message.error(response.data.message);
+                    message.error("删除失败");
                 }
             }).catch((error) => {
                 if (error.response.status === 403) {
-                    message.error(error.response.data.message);
-                    this.props.history.push("/login");
+                    message.error("会话过期，请重新登陆");
                 } else {
                     message.error("服务器错误");
                 }
@@ -123,7 +123,7 @@ class Role extends Component {
             }
         }).then((response) => {
             if (response.data.status) {
-                message.success(response.data.message);
+                message.success(this.props.role.isAdd ? "新增成功" : "修改成功");
                 let data = [];
                 response.data.data.map((value) => {
                     data.push({
@@ -138,12 +138,11 @@ class Role extends Component {
                     this.props.save({role_selectedRowKeys: [], role_selectedRow: []})
                 }
             } else {
-                message.error(response.data.message);
+                message.error(this.props.role.isAdd ? "新增失败" : "修改失败");
             }
         }).catch((error) => {
             if (error.response.status === 403) {
-                message.error(error.response.data.message);
-                this.props.history.push("/login");
+                message.error("会话过期，请重新登陆");
             } else {
                 message.error("服务器错误");
             }
@@ -161,7 +160,7 @@ class Role extends Component {
             withCredentials: true,
         }).then((response) => {
             if (response.data.status) {
-                message.success(response.data.message);
+                message.success("查询成功");
                 let data = [];
                 response.data.data.map((value) => {
                     data.push({
@@ -173,12 +172,11 @@ class Role extends Component {
                 });
                 this.props.save({role_data: data});
             } else {
-                message.error(response.data.message);
+                message.error("查询失败");
             }
         }).catch((error) => {
             if (error.response.status === 403) {
-                message.error(error.response.data.message);
-                this.props.history.push("/login");
+                message.error("会话过期，请重新登陆");
             } else {
                 message.error("服务器错误");
             }

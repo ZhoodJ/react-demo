@@ -31,10 +31,10 @@ class Login extends Component {
             }
         }).then((response) => {
             if (response.data.status) {
-                message.success(response.data.message);
+                message.success("登陆成功");
                 this.props.history.push("/admin");
             } else {
-                message.error(response.data.message);
+                message.error("用户名或密码错误");
             }
         }).catch((error) => {
             message.error("服务器错误");

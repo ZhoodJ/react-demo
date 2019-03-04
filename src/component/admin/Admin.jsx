@@ -35,7 +35,7 @@ class Admin extends Component {
             withCredentials: true,
         }).then((response) => {
             if (!response.data.status) {
-                message.warning(response.data.message);
+                message.warning("请先登陆");
                 this.props.history.push("/login");
             } else {
                 this.props.save({name: response.data.data})
