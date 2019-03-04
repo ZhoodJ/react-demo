@@ -6,7 +6,7 @@ import "./Role.less"
 class Role extends Component {
 
     handleSelectedChange(selectedRowKeys, selectedRow) {
-        this.props.save({selectedRowKeys: selectedRowKeys, selectedRow: selectedRow});
+        this.props.save({role_selectedRowKeys: selectedRowKeys, role_selectedRow: selectedRow});
     }
 
     handleInputValueChange(type, e) {
@@ -18,13 +18,13 @@ class Role extends Component {
     }
 
     handleEdit() {
-        if (this.props.role.selectedRowKeys.length !== 1) {
+        if (this.props.role.role_selectedRowKeys.length !== 1) {
             message.error("请选中一行")
         } else {
             this.props.save({
-                name: this.props.role.selectedRow[0].name,
-                code: this.props.role.selectedRow[0].code,
-                id: this.props.role.selectedRow[0].id,
+                name: this.props.role.role_selectedRow[0].name,
+                code: this.props.role.role_selectedRow[0].code,
+                id: this.props.role.role_selectedRow[0].id,
                 visible: true,
                 isAdd: false
             });
@@ -32,7 +32,7 @@ class Role extends Component {
     }
 
     handleDelete() {
-        if (this.props.role.selectedRowKeys.length < 1) {
+        if (this.props.role.role_selectedRowKeys.length < 1) {
             message.error("请至少选中一行")
         } else {
             axios({
@@ -40,7 +40,7 @@ class Role extends Component {
                 url: "/api/role",
                 data: {
                     data: {
-                        role: this.props.role.selectedRow
+                        role: this.props.role.role_selectedRow
                     }
                 },
                 withCredentials: true,
@@ -56,7 +56,7 @@ class Role extends Component {
                             code: value.code,
                         })
                     });
-                    this.props.save({data: data, selectedRow: [], selectedRowKeys: []});
+                    this.props.save({role_data: data, role_selectedRow: [], role_selectedRowKeys: []});
                 } else {
                     message.error(response.data.message);
                 }
@@ -97,9 +97,9 @@ class Role extends Component {
                         code: value.code,
                     })
                 });
-                this.props.save({visible: false, name: '', code: '', id: '', data: data})
+                this.props.save({visible: false, name: '', code: '', id: '', role_data: data})
                 if (!this.props.role.isAdd) {
-                    this.props.save({selectedRowKeys: [], selectedRow: []})
+                    this.props.save({role_selectedRowKeys: [], role_selectedRow: []})
                 }
             } else {
                 message.error(response.data.message);
@@ -135,7 +135,7 @@ class Role extends Component {
                         code: value.code,
                     })
                 });
-                this.props.save({data: data});
+                this.props.save({role_data: data});
             } else {
                 message.error(response.data.message);
             }
@@ -155,18 +155,21 @@ class Role extends Component {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
+            width: '33%'
         }, {
             title: '角色名',
             dataIndex: 'name',
             key: 'name',
+            width: '33%'
         }, {
             title: '编码',
             dataIndex: 'code',
             key: 'code',
+            width: '33%'
         }];
 
         const rowSelection = {
-            selectedRowKeys: this.props.role.selectedRowKeys,
+            selectedRowKeys: this.props.role.role_selectedRowKeys,
             onChange: this.handleSelectedChange.bind(this)
         };
 
@@ -182,8 +185,14 @@ class Role extends Component {
                     <Button type="primary" onClick={this.handleEdit.bind(this)}>修改</Button>
                     <Button type="danger" onClick={this.handleDelete.bind(this)}>删除</Button>
                 </div>
-                <Table rowSelection={rowSelection} dataSource={this.props.role.data} columns={columns} className="table"
-                       bordered/>
+                <Table rowSelection={rowSelection}
+                       dataSource={this.props.role.role_data}
+                       columns={columns}
+                       className="table"
+                       bordered
+                       title={() => "角色"}
+                       scroll={{y: "300"}}
+                />
                 <Modal
                     title="新增编辑"
                     visible={this.props.role.visible}

@@ -1,9 +1,12 @@
 export const roleReducer = (state, action) => {
     if (!state) {
         return {
-            selectedRowKeys: [],
-            data: [],
-            selectedRow: [],
+            role_selectedRowKeys: [],
+            role_data: [],
+            role_selectedRow: [],
+            permission_selectedRowKeys: [],
+            permission_data: [],
+            permission_selectedRow: [],
             id: '',
             name: '',
             code: '',
