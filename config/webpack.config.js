@@ -37,7 +37,7 @@ module.exports = {
         compress: true,
         proxy: {
             '/api': {
-                target: 'http://localhost:8080',
+                target: 'http://localhost/user/',
                 pathRewrite: {"^/api": ""}
             }
         }
